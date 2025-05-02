@@ -555,3 +555,4 @@ dist/
 calc.spec
 .idea/
 crd.conf
+test/
