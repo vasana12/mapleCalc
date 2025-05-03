@@ -22,7 +22,8 @@ from PyQt5.QtGui import QFont
 from PyQt5.QtCore import Qt, QTimer
 from PyQt5.QtWidgets import QMenuBar, QAction
 
-CONFIG_FILE = Path("drop_configs.json")
+CONFIG_FILE = Path.home() / ".mapulator" / "drop_configs.json"
+CONFIG_FILE.parent.mkdir(exist_ok=True)
 # Z-scores for various target probabilities
 ZS = {0.5: 0.0, 0.6: 0.2533, 0.7: 0.5244, 0.8: 0.8416, 0.9: 1.2816, 0.99: 2.3263}
 
@@ -38,7 +39,9 @@ class DropTimeApp(QWidget):
             QGroupBox { font-weight: bold; border: 1px solid #ccc; border-radius: 5px; margin-top: 10px; background: white; }
             QGroupBox::title { subcontrol-origin: margin; subcontrol-position: top left; padding: 0 3px; }
             QLabel { font-size: 13px; color: #333; }
-            QLineEdit, QComboBox, QSpinBox { padding: 6px; font-size: 14px; border: 1px solid #aaa; border-radius: 4px; background: white; }
+            
+            QLineEdit, QSpinBox { padding: 6px; font-size: 14px; border: 1px solid #aaa; border-radius: 4px;background: white;}
+            QComboBox { padding: 6px; font-size: 14px; border: 1px solid #aaa; border-radius: 4px; background: none; }
             QPushButton { padding: 8px 12px; background: #007bff; color: white; border: none; border-radius: 4px; }
             QPushButton:hover { background: #0056b3; }
             QPlainTextEdit { background: white; border: 1px solid #aaa; border-radius: 4px; padding: 6px; font-family: 'Consolas'; font-size: 12px; }
@@ -378,6 +381,7 @@ class DropTimeApp(QWidget):
         )
 if __name__ == '__main__':
     app = QApplication(sys.argv)
+    app.setStyle('Fusion')    # ← macOS 기본이 아닌 Fusion 스타일
     window = DropTimeApp()
     window.show()
     sys.exit(app.exec_())

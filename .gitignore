@@ -557,3 +557,4 @@ calc.spec
 crd.conf
 test/
 abc/
+.DS_Store
